@@ -1,0 +1,58 @@
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Indie Flower", cursive;
+  background-color: #fff;
+  background-image: linear-gradient(
+      90deg,
+      transparent 79px,
+      #abced4 79px,
+      #abced4 81px,
+      transparent 81px
+    ),
+    linear-gradient(#eee 0.1em, transparent 0.1em);
+  background-size: 100% 1.2em;
+}
+
+#gameMain {
+  text-align: center;
+  width: 100%;
+}
+
+.td_game {
+  /* border: 0.1rem solid black;
+  border-radius: 0.5rem;*/
+  height: 12vh;
+  width: 12vh;
+  text-align: center;
+  vertical-align: middle;
+}
+.td_game:hover {
+  cursor: pointer;
+}
+
+.table_game {
+  height: 25rem;
+  width: 25rem;
+  margin: 0 auto;
+}
+
+.ulScore_game {
+  padding: 0;
+  list-style-type: none;
+}
+
+.table_game tr td:nth-child(2) {
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+}
+
+.table_game tr:nth-child(3) td {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.win {
+  background: rgba(255, 216, 108, 0.842);
+}

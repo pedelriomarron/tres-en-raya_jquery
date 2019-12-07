@@ -1,0 +1,81 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16-mar-2016, 11:38:20
+    Author     : IES TRASSIERRA
+*/
+body {
+    background: #F5D0A9;
+}
+
+table {
+    margin: auto;
+    background-color: transparent;
+
+}
+
+td {
+    border: 1px solid black;
+    height: 100px;
+    width: 100px;
+}
+
+#titulo {
+    margin: auto;
+    text-align: center;
+    color: #6E6E6E;
+    font-size: 6em;
+}
+
+label,
+input[type="text"] {
+    margin-bottom: .35em;
+    text-align: center;
+    color: #6E6E6E;
+    font-size: 1.65em;
+
+}
+
+input[type="button"] {
+    border-radius: 9px 10px 10px 10px;
+    -moz-border-radius: 9px 10px 10px 10px;
+    -webkit-border-radius: 9px 10px 10px 10px;
+    border: 0px solid #000000;
+    width: 200px;
+    height: 50px;
+    color: #e6631c;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#capaJugadores {
+    width: 300px;
+    margin: 0 auto;
+    padding: 2em 3em;
+}
+
+.contenedorInferior {
+
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+}
+
+img {
+    height: 100px;
+    width: 100px;
+}
+
+.turnojugador {
+    color: #0000FF;
+    font-weight: bold;
+}
+
+#mensajeFinal {
+    font-size: 3em;
+    color:blueviolet;
+    text-align: center;
+}
