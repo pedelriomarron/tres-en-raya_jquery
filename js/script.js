@@ -63,7 +63,23 @@ const createBoard = () => {
 
       $(td).droppable({
         accept: ".img_game",
+        over: function () {
+          $(td).css({
+            background: "#f9efc5",
+            opacity: "0.6"
+          })
+        },
+        out: function () {
+          $(td).css({
+            background: "",
+            opacity: "1"
+          })
+        },
         drop: (e, ui) => {
+          $(td).css({
+            background: "",
+            opacity: "1"
+          })
           let player = getPlayer(game.currentPlayerTurn);
           if (
             $(td).children().length < 1 &&
@@ -150,7 +166,7 @@ const nextTurn = () => {
   let player = players.filter(player => {
     return player.id !== game.currentPlayerTurn;
   });
-  console.log(player);
+  // console.log(player);
   clearInterval(game.time);
 
   if (checkWin()) {
@@ -184,14 +200,15 @@ const resetGame = () => {
 };
 
 const time = () => {
-  var n = 0;
-  var l = document.getElementById("number");
+  let timeMax = 15
+  let n = 0;
+  let l = document.getElementById("number");
   let gameTime = setInterval(() => {
-    if (n == 15) {
+    if (n == timeMax) {
       clearInterval(gameTime);
       nextTurn();
     }
-    l.innerHTML = n;
+    l.innerHTML = timeMax - n;
     n++;
   }, 1000);
 
@@ -205,12 +222,12 @@ const checkWin = () => {
   winCombos.map(cw => {
     let co = 0;
     cw.map(c => {
-      console.log(c);
+      // console.log(c);
       if ($(`#${c}`).children()[0] != undefined) {
-        console.log($(`#${c}`).children()[0]);
+        // console.log($(`#${c}`).children()[0]);
         let td_ = $(`#${c}`).children()[0];
         if ($(td_).hasClass(`player-${player.id}`)) {
-          console.log($(`#${c}`).children());
+          //  console.log($(`#${c}`).children());
           co++;
         }
       }
@@ -235,7 +252,7 @@ let changeResult = () => {
 const createImg = player => {
   let img = createElement("img", {
     src: `${player.img}`,
-    height: "55vh",
+    height: "60vw",
     class: `img_game player-${player.id}`
   });
   $(img).draggable({
