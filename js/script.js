@@ -1,4 +1,4 @@
-let v = "1.0.0";
+let v = "1.0.1";
 let players = [
   { id: 0, name: "O", turn: 0, img: "./imagen/imagen0.png", token: 0 },
   { id: 1, name: "X", turn: 0, img: "./imagen/imagenX.png", token: 0 }
