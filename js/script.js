@@ -1,4 +1,4 @@
-let v = "1.0.3";
+let v = "1.0.4";
 let players = [
   { id: 0, name: "O", turn: 0, img: "./imagen/imagen0.png", token: 0 },
   { id: 1, name: "X", turn: 0, img: "./imagen/imagenX.png", token: 0 }
@@ -93,10 +93,6 @@ const createBoard = () => {
 
 
           }
-
-
-
-
         },
         out: function () {
           $(td).css({
@@ -203,7 +199,7 @@ const turn_of = id => {
 
 const nextTurn = () => {
   let player = players.filter(player => {
-    return player.id !== game.currentPlayerTurn;
+    return player.id === game.currentPlayerTurn;
   });
   // console.log(player);
   clearInterval(game.time);
@@ -213,6 +209,9 @@ const nextTurn = () => {
     createDialog("Juego Terminado", `Enhorabuena jugador:<b> ${player[0].name}</b>, la victoria es tuya`)
     changeResult();
   } else {
+    player = players.filter(player => {
+      return player.id !== game.currentPlayerTurn;
+    });
     turn_of(player[0].id);
   }
   return player[0];
