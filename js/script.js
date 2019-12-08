@@ -308,11 +308,15 @@ const algoritmoCercanos = (p1, p2) => {
   validas.push([p1 + 1, p2])
   validas.push([p1 - 1, p2])
 
-  validas.push([p1 + 1, p2 - 1])
-  validas.push([p1 - 1, p2 + 1])
+  if (p1 === 1 && p2 === 1) {
+    validas.push([p1 + 1, p2 - 1])
+    validas.push([p1 - 1, p2 + 1])
+    validas.push([p1 + 1, p2 + 1])
+    validas.push([p1 - 1, p2 - 1])
+  } else {
+    validas.push([1, 1])
+  }
 
-  validas.push([p1 + 1, p2 + 1])
-  validas.push([p1 - 1, p2 - 1])
 
 
   return validas
