@@ -1,4 +1,4 @@
-let v = "1.0.2";
+let v = "1.0.3";
 let players = [
   { id: 0, name: "O", turn: 0, img: "./imagen/imagen0.png", token: 0 },
   { id: 1, name: "X", turn: 0, img: "./imagen/imagenX.png", token: 0 }
@@ -337,8 +337,15 @@ const algoritmoToTabla = (validas) => {
 }
 
 function createDialog(title, text, options) {
-  return $("<div id='dialog_rename' class='dialog' title='" + title + "'><p>" + text + "</p></div>")
+
+  let dial = $("<div id='dialog_rename' class='dialog' title='" + title + "'><p>" + text + "</p></div>")
     .dialog(options);
+
+  $('div#dialog_rename').on('dialogclose', function (event) {
+    $("#dialog_rename").remove()
+  });
+
+  return dial;
 }
 
 renamePlayer = (id) => {
