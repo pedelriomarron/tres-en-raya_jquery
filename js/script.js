@@ -2,7 +2,7 @@ let players = [
   { id: 0, name: "O", turn: 0, img: "./imagen/imagen0.png", token: 0 },
   { id: 1, name: "X", turn: 0, img: "./imagen/imagenX.png", token: 0 }
 ];
-let game = { currentPlayerTurn: undefined, startGame: false, time: undefined };
+let game = { currentPlayerTurn: undefined, startGame: false, time: undefined, timerTurn: 15 };
 
 let winCombos = [
   ["td_0-0", "td_1-0", "td_2-0"],
@@ -19,7 +19,8 @@ $(() => {
   console.log("Se carga la pagina");
   let game = createElement("div", { id: "gameMain" });
 
-  let time = createElement("div", { id: "number" });
+  let time = createElement("div", { id: "clock_game" });
+  $(time).html(`<p> <i id="clock_svg" class="far fa-clock"></i> : <span id="number">....</span></p>`)
   $(game).append(time);
 
   let board = createElement("div", { id: "board" });
@@ -146,13 +147,18 @@ const createScoreboard = () => {
     let li = createElement("li");
     if (game.currentPlayerTurn == player.id) {
       $(li).html(
-        `<b>Jugador ${player.name} : <span id="score_${player.id}">${player.turn}</span></b>`
+        `<img height="10px" src="${player.img}"> <b>Jugador ${player.name} : <span id="score_${player.id}">${player.turn}</span></b>`
       );
     } else {
       $(li).html(
-        `Jugador ${player.name} : <span id="score_${player.id}">${player.turn}</span>`
+        `<img height="10px" src="${player.img}"> Jugador ${player.name} : <span id="score_${player.id}">${player.turn}</span>`
       );
     }
+
+
+    $(li).on("click", () => {
+      createDialog("Change Name", `Desea cambiar el nombre al jugador ${player.name}: <input type="text" id="renamePlayer"> <button onclick="renamePlayer(${player.id})">Cambiar</button>`)
+    })
 
     $(ul).append(li);
   });
@@ -185,7 +191,7 @@ const nextTurn = () => {
   clearInterval(game.time);
 
   if (checkWin()) {
-    alert("GANADOR");
+    createDialog("Juego Terminado", `Enhorabuena jugador:<b> ${player[0].id}</b>, la victoria es tuya`)
     changeResult();
   } else {
     turn_of(player[0].id);
@@ -215,7 +221,7 @@ const resetGame = () => {
 };
 
 const time = () => {
-  let timeMax = 15
+  let timeMax = game.timerTurn
   let n = 0;
   let l = document.getElementById("number");
   let gameTime = setInterval(() => {
@@ -224,6 +230,7 @@ const time = () => {
       nextTurn();
     }
     l.innerHTML = timeMax - n;
+    changeColorClock(timeMax - n)
     n++;
   }, 1000);
 
@@ -304,4 +311,36 @@ const algoritmoToTabla = (validas) => {
   })
 
   return validasTabla
+}
+
+function createDialog(title, text, options) {
+  return $("<div id='dialog_rename' class='dialog' title='" + title + "'><p>" + text + "</p></div>")
+    .dialog(options);
+}
+
+renamePlayer = (id) => {
+  let player = getPlayer(id);
+  let val = $("#renamePlayer").val()
+  //alert(val)
+  player.name = val;
+  $("#scoreBoard").empty();
+  $("#scoreBoard").append(createScoreboard());
+  $("#dialog_rename").remove()
+
+
+}
+
+
+const changeColorClock = (time) => {
+  let color = "green";
+
+  if (time < 6) {
+    color = "red"
+  } else if (time < 11) {
+    color = "orange"
+  }
+
+  $("#clock_svg").css({
+    background: color
+  })
 }

@@ -26,6 +26,20 @@ body {
   width: 100%;
 }
 
+#gameMain caption{
+  padding-bottom: 1.5rem;
+}
+
+#clock_game{
+  font-size: 1.5rem;
+  margin-top  : 1rem;
+  margin-bottom  : 1rem;
+}
+#clock_svg{
+  border-radius: 100%;
+  box-shadow: 0 0 0 1px #fff inset;
+}
+
 .td_game {
   /* border: 0.1rem solid black;
   border-radius: 0.5rem;*/
@@ -42,6 +56,8 @@ body {
   /* height: 25rem;
   width: 25rem; */
   margin: 0 auto;
+  margin-bottom: 1.5rem ;
+  margin-top:1rem
 }
 
 .ulScore_game {
@@ -63,7 +79,7 @@ body {
   background: rgba(255, 216, 108, 0.842);
 }
 
-button{
+#gameMain button{
   border: 1px solid black;
   background: white;
   border-radius: 15px;
@@ -77,16 +93,13 @@ button{
 
 }
 
-button:hover{
+#gameMain button:hover{
   background: rgb(85, 138, 172);
   cursor: pointer;
 
 }
 
-
-
-
-button:active {
+#gameMain button:active {
   box-shadow: 0px 4px 3px #aaaaaa;
   transform: translateY(4px);
 }
