@@ -112,3 +112,6 @@ body {
   transform: translateY(4px);
 }
 
+#version{
+  text-align: center;
+}
