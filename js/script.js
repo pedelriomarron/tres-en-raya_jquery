@@ -64,11 +64,34 @@ const createBoard = () => {
 
       $(td).droppable({
         accept: ".img_game",
-        over: function () {
+        over: function (e, ui) {
           $(td).css({
-            background: "#f9efc5",
-            opacity: "0.6"
+            background: "",
+            opacity: "1"
           })
+          let player = getPlayer(game.currentPlayerTurn);
+          if (
+            $(td).children().length < 1 &&
+            game.startGame &&
+            player.token >= 3 &&
+            $(ui.draggable[0]).hasClass(`player-${player.id}`)
+          ) {
+
+            let enter = comprobateTd(ui, i, j)
+
+            if (enter) {
+              $(td).css({
+                background: "#f9efc5",
+                opacity: "0.6"
+              })
+            }
+
+
+          }
+
+
+
+
         },
         out: function () {
           $(td).css({
@@ -88,18 +111,8 @@ const createBoard = () => {
             player.token >= 3 &&
             $(ui.draggable[0]).hasClass(`player-${player.id}`)
           ) {
-            let str = $($(ui.draggable[0]).parent()[0]).attr('id');
-            let res = str.split("_");
-            res = res[1].split("-");
-            console.log(res)
-            let enter = false
-            algoritmoCercanos(parseInt(res[0]), parseInt(res[1])).map(v => {
-              console.log(`pos1:${i} - ${v[0]}  pos2:${j} - ${v[1]} `)
-              if (v[0] === i && v[1] === j) {
-                console.log("mu bien")
-                enter = true;
-              }
-            })
+
+            let enter = comprobateTd(ui, i, j)
 
             if (enter) {
               let img = createImg(player);
@@ -157,7 +170,7 @@ const createScoreboard = () => {
 
 
     $(li).on("click", () => {
-      createDialog("Change Name", `Desea cambiar el nombre al jugador ${player.name}: <input type="text" id="renamePlayer"> <button onclick="renamePlayer(${player.id})">Cambiar</button>`)
+      createDialog("Change Name", `Desea cambiar el nombre al jugador ${player.name}: <input type="text" id="renamePlayer"><br><br> <button onclick="renamePlayer(${player.id})">Cambiar</button>`)
     })
 
     $(ul).append(li);
@@ -191,6 +204,7 @@ const nextTurn = () => {
   clearInterval(game.time);
 
   if (checkWin()) {
+    game.startGame = false;
     createDialog("Juego Terminado", `Enhorabuena jugador:<b> ${player[0].id}</b>, la victoria es tuya`)
     changeResult();
   } else {
@@ -343,4 +357,25 @@ const changeColorClock = (time) => {
   $("#clock_svg").css({
     background: color
   })
+}
+
+
+const comprobateTd = (ui, i, j) => {
+
+  if (ui.draggable == undefined)
+    return false
+
+  let str = $($(ui.draggable[0]).parent()[0]).attr('id');
+  let res = str.split("_");
+  res = res[1].split("-");
+  console.log(res)
+  let enter = false
+  algoritmoCercanos(parseInt(res[0]), parseInt(res[1])).map(v => {
+    console.log(`pos1:${i} - ${v[0]}  pos2:${j} - ${v[1]} `)
+    if (v[0] === i && v[1] === j) {
+      //console.log("mu bien")
+      enter = true;
+    }
+  })
+  return enter
 }
