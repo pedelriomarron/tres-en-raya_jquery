@@ -87,12 +87,27 @@ const createBoard = () => {
             player.token >= 3 &&
             $(ui.draggable[0]).hasClass(`player-${player.id}`)
           ) {
-            let img = createImg(player);
+            let str = $($(ui.draggable[0]).parent()[0]).attr('id');
+            let res = str.split("_");
+            res = res[1].split("-");
+            console.log(res)
+            let enter = false
+            algoritmoCercanos(parseInt(res[0]), parseInt(res[1])).map(v => {
+              console.log(`pos1:${i} - ${v[0]}  pos2:${j} - ${v[1]} `)
+              if (v[0] === i && v[1] === j) {
+                console.log("mu bien")
+                enter = true;
+              }
+            })
 
-            //$(ui.draggable[0]).draggable({ revert: false });
-            $(ui.draggable[0]).remove();
-            $(td).append(img);
-            nextTurn();
+            if (enter) {
+              let img = createImg(player);
+              //$(ui.draggable[0]).draggable({ revert: false });
+              $(ui.draggable[0]).remove();
+              $(td).append(img);
+              nextTurn();
+            }
+
           }
         }
       });
@@ -261,3 +276,32 @@ const createImg = player => {
   });
   return img;
 };
+
+
+const algoritmoCercanos = (p1, p2) => {
+  let validas = []
+
+  validas.push([p1, p2 + 1])
+  validas.push([p1, p2 - 1])
+
+  validas.push([p1 + 1, p2])
+  validas.push([p1 - 1, p2])
+
+  validas.push([p1 + 1, p2 - 1])
+  validas.push([p1 - 1, p2 + 1])
+
+  validas.push([p1 + 1, p2 + 1])
+  validas.push([p1 - 1, p2 - 1])
+
+
+  return validas
+}
+
+const algoritmoToTabla = (validas) => {
+  let validasTabla = []
+  validas.map(valida => {
+    validasTabla.push([`td_${valida[0]}-${valida[1]}`])
+  })
+
+  return validasTabla
+}
