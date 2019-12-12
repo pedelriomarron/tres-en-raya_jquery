@@ -1,5 +1,5 @@
-let v = "1.0.6";
-let styleBackground = "dosrayas"
+let v = "1.1.0";
+let styleBackground = window.localStorage.getItem("styleBackground") || "dosrayas"
 let players = [
   { id: 0, name: "O", turn: 0, img: "./imagen/imagen0.png", token: 0 },
   { id: 1, name: "X", turn: 0, img: "./imagen/imagenX.png", token: 0 }
@@ -42,7 +42,7 @@ $(() => {
 
   $("body").append(game);
   let version = createElement("div", { id: "version" });
-  $(version).html(`v.${v}`)
+  $(version).html(`v.${v} <p>dev. by <b>Pedro Manuel del Río Marrón</b></p>`)
   $("body").append(version);
 
 });
@@ -402,8 +402,10 @@ const comprobateTd = (ui, i, j) => {
 const styles = () => {
   $("body").removeClass()
   $("body").addClass(styleBackground)
+  $(`#style_select option[value=${styleBackground}]`).attr('selected', 'selected');
   $("#style_select").change(function (e) {
     $("body").removeClass()
     $("body").addClass(e.target.value)
+    window.localStorage.setItem("styleBackground", e.target.value)
   })
 }
