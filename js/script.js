@@ -1,4 +1,4 @@
-let v = "1.0.5";
+let v = "1.0.6";
 let styleBackground = "dosrayas"
 let players = [
   { id: 0, name: "O", turn: 0, img: "./imagen/imagen0.png", token: 0 },
