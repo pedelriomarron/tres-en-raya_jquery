@@ -1,4 +1,5 @@
-let v = "1.0.4";
+let v = "1.0.5";
+let styleBackground = "dosrayas"
 let players = [
   { id: 0, name: "O", turn: 0, img: "./imagen/imagen0.png", token: 0 },
   { id: 1, name: "X", turn: 0, img: "./imagen/imagenX.png", token: 0 }
@@ -17,6 +18,8 @@ let winCombos = [
 ];
 
 $(() => {
+  //Add event styles
+  styles()
   console.log("Se carga la pagina");
   let game = createElement("div", { id: "gameMain" });
 
@@ -393,4 +396,14 @@ const comprobateTd = (ui, i, j) => {
     }
   })
   return enter
+}
+
+
+const styles = () => {
+  $("body").removeClass()
+  $("body").addClass(styleBackground)
+  $("#style_select").change(function (e) {
+    $("body").removeClass()
+    $("body").addClass(e.target.value)
+  })
 }
