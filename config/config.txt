@@ -1,23 +1,6 @@
 [
   {
-    "login": "pedelriomarron",
-    "id": 29061289,
-    "node_id": "MDQ6VXNlcjI5MDYxMjg5",
-    "avatar_url": "https://avatars3.githubusercontent.com/u/29061289?v=4",
-    "gravatar_id": "",
-    "url": "https://api.github.com/users/pedelriomarron",
-    "html_url": "https://github.com/pedelriomarron",
-    "followers_url": "https://api.github.com/users/pedelriomarron/followers",
-    "following_url": "https://api.github.com/users/pedelriomarron/following{/other_user}",
-    "gists_url": "https://api.github.com/users/pedelriomarron/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/pedelriomarron/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/pedelriomarron/subscriptions",
-    "organizations_url": "https://api.github.com/users/pedelriomarron/orgs",
-    "repos_url": "https://api.github.com/users/pedelriomarron/repos",
-    "events_url": "https://api.github.com/users/pedelriomarron/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/pedelriomarron/received_events",
-    "type": "User",
-    "site_admin": false,
-    "contributions": 15
+    "active": true,
+    "img": "https://avatars3.githubusercontent.com/u/29061289?v=4"
   }
 ]
