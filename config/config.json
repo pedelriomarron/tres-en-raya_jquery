@@ -1,1 +1,6 @@
-{img: 'https://as.com/meristation/imagenes/2019/02/28/noticias/1551333758_581301_1551333817_noticia_normal.jpg', active: true }
+[
+  {
+    "img": "https://as.com/meristation/imagenes/2019/02/28/noticias/1551333758_581301_1551333817_noticia_normal.jpg",
+    "active": true
+  }
+]
